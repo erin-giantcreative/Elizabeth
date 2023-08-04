@@ -37,7 +37,7 @@
         {% if article.image != blank %}
           <img
             class="w-full h-80 md:h-96 object-cover object-center"
-            src="{{ article.image | img_url: 'large'}}"
+            src="{{ article.image | image_url: 'large'}}"
             alt="{{ article.image.alt }}"
             loading="lazy"
             width="{{ article.image.width }}"
@@ -157,8 +157,8 @@
 <script type="application/ld+json">
   {
   "@context": "http://schema.org",
-            "@type": "BlogPosting",
-            "headline": {{ article.title | json }},
+              "@type": "BlogPosting",
+              "headline": {{ article.title | json }},
   "articleBody": {{ article.content | strip_html | json }},
   {% if article.excerpt != blank %}
     "description": {{ article.excerpt | strip_html | json }},
@@ -171,12 +171,12 @@
   "datePublished": {{ article.published_at | date: format: "default" | json }},
   "dateCreated": {{ article.created_at | date: format: "default" | json }},
   "author": {
-                "@type": "Person",
-                "name": {{ article.author | json }}
+                  "@type": "Person",
+                  "name": {{ article.author | json }}
   },
   "publisher": {
-                "@type": "Organization",
-                "name": {{ shop.name | json }}
+                  "@type": "Organization",
+                  "name": {{ shop.name | json }}
   }
   }
 </script>
