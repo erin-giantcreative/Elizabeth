@@ -1,0 +1,47 @@
+<div class="py-8">
+  {% paginate search.results by 10 %}
+    <h1 class="text-center text-3xl">Search Results for "{{ search.terms | escape }}"</h1>
+
+    <div class="flex justify-center items-center py-8">
+      <form
+        action="{{ routes.search_url }}"
+        method="GET"
+        class="flex rounded">
+        <input
+          type="search"
+          name="q"
+          placeholder="Search"
+          value="{{ search.terms | escape }}"
+          class="px-4 py-2 w-80 border">
+
+        <button type="submit" class="bg-gray-900 hover:bg-gray-700 text-white px-4 border ">{% render 'icon-search' %}</button>
+      </form>
+    </div>
+    {% if search.performed %}
+      {% if search.results.size > 0 %}
+        <div class="py-2 max-w-6xl mx-auto ">
+          <p class="text-gray-500 text-center">{{ search.results.size }} result for the search term "{{ search.terms | escape }}" have been found.</p>
+        </div>
+        <div class="max-w-6xl mx-auto pt-2">
+          <div class="grid grid-cold-1 md:grid-cols-3 gap-8">
+            {% for result in search.results %}
+              {% case result.object_type %}
+                {% when 'product' %}
+                {% render 'product-card', product: result %}
+            {% else %}
+
+              {% endcase %}
+            {% endfor %}
+          </div>
+        </div>
+      {% else %}
+        <div class="text-center pt-2">
+          <p>No results found</p>
+        </div>
+      {% endif %}
+    {% endif %}
+    <div class="max-w-6xl mx-auto">
+      {% render 'pagination', pagination: paginate %}
+    </div>
+  {% endpaginate %}
+</div>
