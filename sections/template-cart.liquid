@@ -35,7 +35,7 @@
                   {% if item.image %}
                     <img
                       class="w-20 h-20  object-cover border"
-                      src="{{ item.image.src | img_url: 'small'}}"
+                      src="{{ item.image.src | img_url: 'small' }}"
                       alt="{{ item.title | escape }}"
                       loading="lazy"
                       width="{{ item.image.width }}"
@@ -48,7 +48,7 @@
               <td class="py-4 px-2 flex flex-col justify-center">
                 <a href="{{ item.url }}" class="my-1">{{ item.product.title | truncatewords: 5 }}</a>
                 <span class="text-sm text-gray-500 my-1">{{ item.variant.title }}</span>
-                <a href="{{ routes.cart_change_url }}?line={{ forloop.index  }}&quantity=0" class="text-sm font-medium text-red-500 my-1">Remove</a>
+                <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity=0" class="text-sm font-medium text-red-500 my-1">Remove</a>
               </td>
               <td class="py-4 px-2">
                 <input
